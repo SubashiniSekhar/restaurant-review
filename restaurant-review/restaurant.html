@@ -16,27 +16,29 @@
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
-    <nav>
+    <nav tabindex="-1">
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" role="breadcrumb" aria-label="breadcrumb">
+    <nav id="breadcrumb" role="navigation" aria-label="breadcrumb">
+    <ul>
       <li><a href="/">Home</a></li>
     </ul>
+    </nav>
     <!-- End breadcrumb -->
     <!-- End nav -->
   </header>
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent" role="map" aria-label="map">
+  <main id="maincontent" role="map" aria-label="map" tabindex="-1">
     <!-- Beginning map -->
-    <section id="map-container">
-      <div id="map"></div>
+    <section id="map-container" role="map" aria-label="map-container" tabindex="-1">
+      <div id="map" tabindex="-1"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <section id="restaurant-container" >
       <h1 id="restaurant-name"></h1>
       <img id="restaurant-img">
       <p id="restaurant-cuisine"></p>

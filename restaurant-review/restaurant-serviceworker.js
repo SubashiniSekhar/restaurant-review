@@ -26,24 +26,20 @@ self.addEventListener('fetch', function (event) {
       if(res){
         return res;
       }
-      return fetch (event.request);
+      return fetch (event.request).then(
+        function (response) {
+          if (!response || response.status !== 200 || response.type != 'basic'){
+            return response;
+          }
+
+          var responseCache = response.clone();
+          caches.open('restaurantCache').then(function (cache) {
+            cache.put(event.request, responseCache);
+          });
+        }
+      );
     })
   )
 });
 
-self.addEventListener('activate', function (event) {
-  event.waitUntil(
-    caches.keys().then(function (cacheNames) {
-      return Promise.all(
-        cacheNames.filter(function (cacheName) {
-          return cacheName.startsWith('restaurantCache') &&
-            cacheName != staticCacheName;
-        }).map(function (cacheName) {
-          return cache.delete(cacheName);
-        })
-      )
-
-    })
-  )
-})
 
